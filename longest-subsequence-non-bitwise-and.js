@@ -47,13 +47,15 @@ function test() {
   console.log("sequence:", arr);
   const result = getMaxSub(arr);
   console.log("the maximum subsequence:", result);
+  console.log(`the longest length is ${result.length}`);
   // check if the bitwise And result is correct
-  let str = "", res, checked = true;
+  let str = "", res = null, checked = true;
   for (let i of result) {
-    str = (str.length ? `${str} & ${i}` : `${i}`);
-    res = (str.length ? (res & i) : i);
+    str = str.length ? `${str} & ${i}` : `${i}`;
+    res = res ? (res & i) : i;
   }
   console.log(`${str} = ${res}`);
+  if (!res) checked = false;
   // check if it's maximum
   for (let i of arr) {
     if (result.includes(i)) {
