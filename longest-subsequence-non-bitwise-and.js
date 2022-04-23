@@ -59,12 +59,12 @@ function test() {
   // check if it's maximum
   for (let i of arr) {
     if (result.includes(i)) {
-      console.log(`${i} in ${str}`);
+      console.log(`${i}: ${i} in [${str.replace(/ \&/g, ',')}]`);
     }
     else {
       const newres = res & i;
       if (newres) checked = false;
-      console.log(`${str} & ${i} = ${newres}`);
+      console.log(`${i}: ${str} & ${i} = ${newres}`);
     }
   }
   console.log(checked ? "correct" : "wrong");
