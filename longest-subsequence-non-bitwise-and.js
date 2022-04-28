@@ -27,6 +27,30 @@ function getMaxSub(arr) {
 }
 
 /**
+ * get the maximum subsequence by using bitwise operators
+ * @param {Array} arr 
+ */
+function getMaxSubBit(arr) {
+  let bits = [], maxlen = 0, result = [];
+  for (let i of arr) {
+    for (let j = i, k = 0; j > 0; k++) {
+      if (typeof bits[k] !== 'object') {
+        bits[k] = [];
+      }
+      if (j & 1) bits[k].push(i);
+      j = j >> 1;
+    }
+  }
+  for (let i of bits) {
+    if (i.length > maxlen) {
+      maxlen = i.length;
+      result = i;
+    }
+  }
+  return result;
+}
+
+/**
  * generate random array
  */
 function generateRndArr() {
@@ -45,7 +69,12 @@ function generateRndArr() {
 function test() {
   const arr = generateRndArr();
   console.log("sequence:", arr);
-  const result = getMaxSub(arr);
+  console.log("[normal way]");
+  let result = getMaxSub(arr);
+  console.log("the maximum subsequence:", result);
+  console.log(`the longest length is ${result.length}`);
+  console.log("[bitwise way]");
+  result = getMaxSubBit(arr);
   console.log("the maximum subsequence:", result);
   console.log(`the longest length is ${result.length}`);
   // check if the bitwise And result is correct
