@@ -112,6 +112,7 @@ function findOut(query, diff) {
         if (sum1 !== sum2 || sum2 !== sum3 || sum3 !== sum1) console.error("There is a wrong solution.", sum1, sum2, sum3);
         result.push(sum1);
     }
+    console.log("[findOut] result", query, result);
     return result;
 }
 
